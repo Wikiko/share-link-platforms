@@ -17,11 +17,6 @@ export class CreateFuncionario1629747483897 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'data_nascimento',
-            type: 'date',
-            isNullable: true,
-          },
-          {
             name: 'rg',
             type: 'varchar',
             isNullable: true,

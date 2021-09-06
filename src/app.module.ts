@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import morgan = require('morgan');
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { FuncionarioModule } from './funcionario/funcionario.module';
+import { ContatoModule } from './contato/contato.module';
 
 @Module({
   imports: [
@@ -13,13 +14,16 @@ import { FuncionarioModule } from './funcionario/funcionario.module';
       database: `${__dirname}/database/banco.sqlite`,
       entities: [`${__dirname}/**/**/*.entity{.ts,.js}`],
       namingStrategy: new SnakeNamingStrategy(),
-      migrationsRun: true,
+      synchronize: true,
+      migrationsRun: false,
       migrations: [`${__dirname}/database/migration/*{.ts,.js}`],
       extra: {
         ssl: process.env.DB_SSL || false,
       },
+      logger: 'advanced-console',
     }),
     FuncionarioModule,
+    ContatoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

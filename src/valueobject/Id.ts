@@ -11,11 +11,11 @@ export class Id {
     return new Id(id);
   }
 
-  get id(): string {
+  toString(): string {
     return this._id;
   }
 
-  equals(id: Id): boolean {
-    return this.id === id.id;
+  equals(otherId: Id): boolean {
+    return this._id === otherId._id;
   }
 }
