@@ -12,6 +12,9 @@ import { FuncionarioService } from './funcionario.service';
       contatos: {
         eager: true,
       },
+      enderecos: {
+        eager: true,
+      },
     },
   },
 })

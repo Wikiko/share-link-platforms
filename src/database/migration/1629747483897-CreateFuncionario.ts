@@ -11,6 +11,7 @@ export class CreateFuncionario1629747483897 implements MigrationInterface {
           {
             name: 'id',
             type: 'varchar',
+            isPrimary: true,
           },
           {
             name: 'nome',
@@ -27,7 +28,7 @@ export class CreateFuncionario1629747483897 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'cargo',
+            name: 'profissao',
             type: 'varchar',
           },
         ],

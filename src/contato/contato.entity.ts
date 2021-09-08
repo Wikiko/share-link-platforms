@@ -52,6 +52,6 @@ export class Contato extends AbstractEntity {
   })
   observacao: string;
 
-  @ManyToOne(() => Funcionario)
+  @ManyToOne(() => Funcionario, (funcionario) => funcionario.contatos)
   funcionario?: Funcionario;
 }

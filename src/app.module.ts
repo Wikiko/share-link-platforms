@@ -6,6 +6,7 @@ import morgan = require('morgan');
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { FuncionarioModule } from './funcionario/funcionario.module';
 import { ContatoModule } from './contato/contato.module';
+import { EnderecoModule } from './endereco/endereco.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ContatoModule } from './contato/contato.module';
     }),
     FuncionarioModule,
     ContatoModule,
+    EnderecoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,8 +1,12 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
-import { TipoDeContato } from '../../contato/contato.entity';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export class CreateContato1630947183420 implements MigrationInterface {
-  private tableName = 'contatos';
+export class CreateEndereco1631122850792 implements MigrationInterface {
+  private tableName = 'enderecos';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -15,37 +19,28 @@ export class CreateContato1630947183420 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'tipo',
-            type: 'enum',
-            enum: [
-              TipoDeContato.EMAIL,
-              TipoDeContato.TELEFONE,
-              TipoDeContato.CELULAR,
-            ],
-          },
-          {
-            name: 'celular',
+            name: 'rua',
             type: 'varchar',
-            isNullable: true,
           },
           {
-            name: 'telefone',
+            name: 'bairro',
             type: 'varchar',
-            isNullable: true,
           },
           {
-            name: 'email',
+            name: 'numero',
             type: 'varchar',
-            isNullable: true,
           },
           {
-            name: 'principal',
-            type: 'bool',
-            default: false,
+            name: 'cidade',
+            type: 'varchar',
           },
           {
-            name: 'observacao',
-            type: 'text',
+            name: 'estado',
+            type: 'varchar',
+          },
+          {
+            name: 'cep',
+            type: 'varchar',
             isNullable: true,
           },
           {
@@ -57,15 +52,20 @@ export class CreateContato1630947183420 implements MigrationInterface {
       }),
       true,
     );
+    await queryRunner.createForeignKeys(this.tableName, this.getForeignKeys());
+  }
+
+  private getForeignKeys(): TableForeignKey[] {
     const foreignKey = new TableForeignKey({
       columnNames: ['funcionario_id'],
       referencedColumnNames: ['id'],
       referencedTableName: 'funcionarios',
     });
-    await queryRunner.createForeignKey(this.tableName, foreignKey);
+    return [foreignKey];
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    return queryRunner.dropTable(this.tableName, true);
+    await queryRunner.dropForeignKeys(this.tableName, this.getForeignKeys());
+    await queryRunner.dropTable(this.tableName, true);
   }
 }
