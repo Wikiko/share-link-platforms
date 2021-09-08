@@ -1,8 +1,10 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { AbstractEntity } from '../abstract.entity';
 import { IsCEP } from 'brazilian-class-validator';
 import { IsNotEmpty, IsString, ValidateIf } from 'class-validator';
 import { Funcionario } from '../funcionario/funcionario.entity';
+import { Cliente } from '../cliente/cliente.entity';
+import { Obra } from '../obra/obra.entity';
 
 @Entity('enderecos')
 export class Endereco extends AbstractEntity {
@@ -41,4 +43,11 @@ export class Endereco extends AbstractEntity {
 
   @ManyToOne(() => Funcionario, (funcionario) => funcionario.enderecos)
   funcionario?: Funcionario;
+
+  @ManyToOne(() => Cliente, (cliente) => cliente.enderecos)
+  cliente?: Cliente;
+
+  @OneToOne(() => Obra)
+  @JoinColumn()
+  obra?: Obra;
 }

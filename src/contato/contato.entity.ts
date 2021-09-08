@@ -9,6 +9,7 @@ import {
   IsPhoneNumber,
   ValidateIf,
 } from 'class-validator';
+import { Cliente } from '../cliente/cliente.entity';
 
 export enum TipoDeContato {
   TELEFONE = 'TELEFONE',
@@ -54,4 +55,7 @@ export class Contato extends AbstractEntity {
 
   @ManyToOne(() => Funcionario, (funcionario) => funcionario.contatos)
   funcionario?: Funcionario;
+
+  @ManyToOne(() => Cliente, (cliente) => cliente.contatos)
+  cliente?: Cliente;
 }

@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Funcionario } from './funcionario.entity';
 import { FuncionarioController } from './funcionario.controller';
 import { FuncionarioService } from './funcionario.service';
-import { Contato } from '../contato/contato.entity';
 
 @Module({
   controllers: [FuncionarioController],
