@@ -23,7 +23,7 @@ import { ObraModule } from './obra/obra.module';
       extra: {
         ssl: process.env.DB_SSL || false,
       },
-      logging: 'all',
+      // logging: 'all',
     }),
     FuncionarioModule,
     ContatoModule,
